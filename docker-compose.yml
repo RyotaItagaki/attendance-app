@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    image: node:14.15.0
+    tty: true
+    ports: 
+      - 3000:3000
+    volumes:
+      - ./web:/web:cached
+    working_dir: /web
+    command: node
+  db:
+    image: postgres
+    restart: unless-stopped
+    ports: 
+      - 5432:5432
+    volumes: 
+      - ./db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: teacher
+      POSTGRES_DB: attendance
