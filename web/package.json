@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "db-init": "sequelize db:create",
+    "db-reset": "sequelize db:drop",
+    "db-sync": "ts-node src/initial.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev src/app.ts"
   },
@@ -14,12 +17,22 @@
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
     "eslint": "^7.13.0",
+    "eslint-config-google": "^0.14.0",
+    "prettier": "^2.1.2",
+    "sequelize-cli": "^5.5.1",
     "ts-node": "^9.0.0",
     "ts-node-dev": "^1.0.0",
     "typescript": "^4.0.5"
   },
   "dependencies": {
+    "@types/bluebird": "^3.5.33",
     "@types/node": "^14.14.6",
-    "express": "^4.17.1"
+    "@types/validator": "^13.1.0",
+    "express": "^4.17.1",
+    "pg": "^8.5.0",
+    "pg-hstore": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.21.7",
+    "sequelize-typescript": "^1.1.0"
   }
 }
