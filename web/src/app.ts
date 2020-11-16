@@ -5,16 +5,20 @@ const path = require('path');
 const app = express();
 // const bodyParser = require('')
 
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes');
+const aboutRouter = require('./routes/about');
+const hellojsonRouter = require('./routes/hellojson');
 
 // view engine set up
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use('/', indexRouter);
+app.use('/about', aboutRouter);
+app.use('/hellojson', hellojsonRouter);
 
 app.get('/attendance/v1/hello', (req, res) => {
   // res.json({message: 'hello, world'});
