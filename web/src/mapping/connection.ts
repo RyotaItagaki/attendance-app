@@ -1,5 +1,6 @@
 import {Model, Sequelize} from 'sequelize-typescript';
-import {UserMapper} from './user';
+import {StudentsMapper} from './students';
+// import {UserMapper} from './user';
 
 const env = process.env.NODE_ENV || 'development';
 // const env = 'development';
@@ -16,6 +17,7 @@ const seq = new Sequelize({
   // models: [__dirname + './'],
 });
 
-seq.addModels([UserMapper]);
+// seq.addModels([UserMapper]);
+seq.addModels([StudentsMapper]);
 
 export default seq;
