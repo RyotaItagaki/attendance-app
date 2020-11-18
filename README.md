@@ -20,10 +20,21 @@
 * 
 * 生徒を新規に追加する
 
+* curlコマンド
+
+```
+// GETメソッド
+$ curl -X GET http://localhost:3000
+```
+
 
 
 * memo
 
 ```
-$ insert into students (id, name, creationdate, updatedon) values (1, '青木翔太', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+$ insert into students (id, name, creationdate, updatedon) values (1, '板垣亮太', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into students (id, name, creationdate, updatedon) values (2, '工藤だいし', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into students (id, name, creationdate, updatedon) values (3, '藤田優一', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 ```

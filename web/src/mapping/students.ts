@@ -27,7 +27,7 @@ const TABLE_NAME = 'students';
 })
 /**
  * ユーザー用Mapper
- * @implements {TStudents}
+ * @implements {IStudents}
  */
 export class StudentsMapper extends Model<StudentsMapper> implements IStudents {
   @Unique
