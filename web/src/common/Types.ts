@@ -1,5 +1,5 @@
 const TYPES = {
-  IStudentsRepository: Symbol.for('IStudentsRepository'),
+  IStudentService: Symbol.for('IStudentService'),
 };
 
 export {TYPES};

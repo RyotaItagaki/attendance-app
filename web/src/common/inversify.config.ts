@@ -1,10 +1,12 @@
 import {Container} from 'inversify';
 import {TYPES} from './Types';
-import {IStudentRepository} from '../repository/IStudentRepository';
-import {StudentRepositoryImpl} from '../repository/StudentRepositoryImpl';
+import {IStudentService} from '../Service/IStudentService';
+import {StudentServiceImpl} from '../Service/StudentServiceImpl';
 
 const container = new Container();
 container
-    .bind<IStudentRepository>(TYPES.IStudentsRepository)
-    .to(StudentRepositoryImpl)
+    .bind<IStudentService>(TYPES.IStudentService)
+    .to(StudentServiceImpl)
     .inSingletonScope();
+
+export {container};
