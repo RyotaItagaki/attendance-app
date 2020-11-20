@@ -9,11 +9,11 @@
 
 |メソッド|URI|詳細|
 |-|-|-|
-|GET|`/attendance/v1/students`|生徒リスト取得|
-|GET|`/attendance/v1/students/123`|生徒情報の習得|
-|POST|`/attendance/v1/students`|新規生徒作成|
-|PUT|`/attendance/v1/students/123`|生徒情報の更新|
-|DELETE|`/attendance/v1/students/123`|生徒の削除|
+|GET|`/attendance`|生徒リスト取得|
+|GET|`/attendance/123`|生徒情報の習得|
+|POST|`/attendance`|新規生徒作成|
+|PUT|`/attendance/123`|生徒情報の更新|
+|DELETE|`/attendance/123`|生徒の削除|
 
 ## ユースケース
 ### アクター：ユーザー（先生）
@@ -37,4 +37,6 @@ $ insert into students (id, name, creationdate, updatedon) values (1, '板垣亮
 $ insert into students (id, name, creationdate, updatedon) values (2, '工藤だいし', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 $ insert into students (id, name, creationdate, updatedon) values (3, '藤田優一', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into students (name, creationdate, updatedon) values ('中村真太郎', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 ```

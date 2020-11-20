@@ -13,6 +13,7 @@ const hellojsonRouter = require('./routes/hellojson');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// body-parserのやつ
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
