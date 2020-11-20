@@ -13,6 +13,7 @@ import {
   PrimaryKey,
   HasOne,
   AllowNull,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import {IUser} from '../model/IUser';
 import {IStudents} from './IStudents';
@@ -32,6 +33,7 @@ const TABLE_NAME = 'students';
 export class StudentsMapper extends Model<StudentsMapper> implements IStudents {
   @Unique
   @PrimaryKey
+  @AutoIncrement
   @Column(DataType.INTEGER)
   id: number;
 

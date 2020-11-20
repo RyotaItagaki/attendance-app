@@ -12,21 +12,37 @@ import {IStudentService} from './IStudentService';
  * @implements {IStudentService}
  */
 export class StudentServiceImpl implements IStudentService {
-  async findAll(): Promise<string> {
+  async findAllStudents(): Promise<string> {
     const studentRepository = seq.getRepository(StudentsMapper);
     const found = await studentRepository.findAll().then((students) => {
       // return JSON.stringify(students);
       return JSON.parse(JSON.stringify(students));
     });
-    // .toJSON();
-    /*
-        .then((students) => {
-          return students;
-        })
-        .catch((e) => {
-          throw new Error(e);
-        });
-        */
     return found;
   }
+
+  async findOneStudent(id: number): Promise<string> {
+    const studentRepository = seq.getRepository(StudentsMapper);
+    const found = await studentRepository.findByPk(id).then((student) => {
+      return JSON.parse(JSON.stringify(student));
+      // return student;
+    });
+    return found;
+  }
+
+  // ゆくゆくはjson入力？？？
+  // routesでreq.body.nameでいけるはず
+  // /*
+  async createOneStudent(name: string): Promise<string> {
+    const studentRepository = seq.getRepository(StudentsMapper);
+    const create = await studentRepository.create({
+      // idの自動採番
+      name: name,
+      // createAt, updateAtは自動のはず
+    }).then(() => {
+      return '新規student作成';
+    });
+    return create;
+  }
+  // */
 }
