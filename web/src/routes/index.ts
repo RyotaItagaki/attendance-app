@@ -46,7 +46,7 @@ router.post(
     '/attendance',
     async (req: Request, res: Response, next: NextFunction) => {
       const name = req.body.name;
-      const newStudent = await con.createOneStudent(name);
+      const newStudent = await con.createStudent(name);
       // res.send({message: newStudent});
       res.redirect('/attendance');
     });

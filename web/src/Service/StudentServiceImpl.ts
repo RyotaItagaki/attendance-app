@@ -33,7 +33,7 @@ export class StudentServiceImpl implements IStudentService {
   // ゆくゆくはjson入力？？？
   // routesでreq.body.nameでいけるはず
   // /*
-  async createOneStudent(name: string): Promise<string> {
+  async createStudent(name: string): Promise<string> {
     const studentRepository = seq.getRepository(StudentsMapper);
     const create = await studentRepository.create({
       // idの自動採番
@@ -45,4 +45,29 @@ export class StudentServiceImpl implements IStudentService {
     return create;
   }
   // */
+
+  async updateStudent(id: number, name: string): Promise<string> {
+    const studentRepository = seq.getRepository(StudentsMapper);
+    const update = await studentRepository.update(
+        {
+          name: name,
+        },
+        {
+          where: {id: id},
+        },
+    ).then(() => {
+      return 'student修正';
+    });
+    return update;
+  }
+
+  async deleteStudent(id: number): Promise<string> {
+    const studentRepository = seq.getRepository(StudentsMapper);
+    const update = await studentRepository.destroy({
+      where: {id: id},
+    }).then(() => {
+      return 'student削除';
+    });
+    return update;
+  }
 }
