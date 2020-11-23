@@ -12,6 +12,15 @@
     <td align="center"><%= student.name %></td>
   </tr>
 </table>
+<p>編集</p>
+<form action="/attendance/<%= student.id %>/edit" method="POST">
+  <label for="name">名前</label>
+  <input type="text" name="name">
+  <button type="submit">変更</button>
+</form>
+<form action="/attendance/<%= student.id %>/del" method="post">
+  <button type="submit">削除</button>
+</form>
 
 
 <%- include('common/footer') %>

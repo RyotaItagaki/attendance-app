@@ -17,6 +17,11 @@
   <tr>
     <td align="center"><%= student.id %></td>
     <td align="center"><%= student.name %></td>
+    <td>
+      <form action="/attendance/<%= student.id %>" method="GET">
+        <button type="submit">詳細</button>
+      </form>
+    </td>
   </tr>
   <% }); %>
 </table>
