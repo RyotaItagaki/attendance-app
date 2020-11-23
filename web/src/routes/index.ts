@@ -13,21 +13,7 @@ router.get(
     '/attendance',
     async (req: Request, res: Response, next: NextFunction) => {
       const students = await con.findAllStudents();
-      // const student1 = students
-      // res.json(students);
-      // res.render('index', {students: students});
-      // res.render('index', {name: 'Ryota'});
-      /*
-      res.render('index', {
-        students: [
-          {id: 1, name: '亮太'},
-          {id: 2, name: 'だいし'},
-        ],
-      });
-      */
       res.render('index', {students: students});
-      // res.send('トップページ');
-      // res.json({message: 'hello, world'});
     });
 
 // Get a student
@@ -41,6 +27,14 @@ router.get(
       res.render('student', {student: student});
     });
 
+/*
+router.get(
+    '/window',
+    (req: Request, res: Response) => {
+      res.
+    });
+// */
+
 // Create a student
 router.post(
     '/attendance',
@@ -50,5 +44,27 @@ router.post(
       // res.send({message: newStudent});
       res.redirect('/attendance');
     });
+
+// update a student
+// router.putじゃねーの？？？？？？
+router.post(
+    '/attendance/:id/edit',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const id = parseInt(req.params.id);
+      const name = req.body.name;
+      const updateStudent = await con.updateStudent(id, name);
+      res.redirect('/attendance');
+    });
+
+// delete a student
+// /*
+router.post(
+    '/attendance/:id/del',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const id = parseInt(req.params.id);
+      const deleteStudent = await con.deleteStudent(id);
+      res.redirect('/attendance');
+    });
+// */
 
 module.exports = router;
