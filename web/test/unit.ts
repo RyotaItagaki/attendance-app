@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import 'mocha';
 import {container} from '../src/common/inversify.config';
 import {TYPES} from '../src/common/Types';

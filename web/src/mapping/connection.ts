@@ -1,4 +1,8 @@
 import {Model, Sequelize} from 'sequelize-typescript';
+import {AttendMapper} from './attendance';
+import {DateMapper} from './date';
+import {GroupMapper} from './group';
+import {MemberMapper} from './member';
 import {StudentsMapper} from './students';
 // import {UserMapper} from './user';
 
@@ -18,6 +22,7 @@ const seq = new Sequelize({
 });
 
 // seq.addModels([UserMapper]);
-seq.addModels([StudentsMapper]);
+// seq.addModels([StudentsMapper]);
+seq.addModels([GroupMapper, MemberMapper, DateMapper, AttendMapper]);
 
 export default seq;
