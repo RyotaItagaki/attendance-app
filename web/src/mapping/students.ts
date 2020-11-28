@@ -15,7 +15,6 @@ import {
   AllowNull,
   AutoIncrement,
 } from 'sequelize-typescript';
-import {IUser} from '../model/IUser';
 import {IStudents} from './IStudents';
 import {TStudents} from './TStudents';
 

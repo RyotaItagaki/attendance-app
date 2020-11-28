@@ -9,7 +9,7 @@ services:
       - ./web:/web:cached
     working_dir: /web
     ## command: node
-    command: npm start
+    ## command: npm start
     networks: 
       - ita-net
   db:

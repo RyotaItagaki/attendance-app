@@ -10,5 +10,5 @@ export interface IStudentService {
   // student編集
   updateStudent(id: number, name: string): Promise<string>;
   // student削除
-  deleteStudent(id: number): Promise<string>;
+  deleteStudent(id: number): Promise<string |false>;
 }

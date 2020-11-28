@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express');
 import {Request, Response, NextFunction} from 'express';
 import {container} from '../common/inversify.config';
@@ -13,7 +14,7 @@ router.get(
     '/attendance',
     async (req: Request, res: Response, next: NextFunction) => {
       const students = await con.findAllStudents();
-      res.render('index', {students: students});
+      res.status(200).render('index', {students: students});
     });
 
 // Get a student
@@ -27,14 +28,6 @@ router.get(
       res.render('student', {student: student});
     });
 
-/*
-router.get(
-    '/window',
-    (req: Request, res: Response) => {
-      res.
-    });
-// */
-
 // Create a student
 router.post(
     '/attendance',
@@ -42,7 +35,7 @@ router.post(
       const name = req.body.name;
       const newStudent = await con.createStudent(name);
       // res.send({message: newStudent});
-      res.redirect('/attendance');
+      res.status(201).redirect('/attendance');
     });
 
 // update a student
@@ -53,7 +46,7 @@ router.post(
       const id = parseInt(req.params.id);
       const name = req.body.name;
       const updateStudent = await con.updateStudent(id, name);
-      res.redirect('/attendance');
+      res.status(201).redirect('/attendance');
     });
 
 // delete a student
@@ -62,8 +55,16 @@ router.post(
     '/attendance/:id/del',
     async (req: Request, res: Response, next: NextFunction) => {
       const id = parseInt(req.params.id);
+      /*
+      if (condition) {
+
+      } else {
+
+      }
+      */
       const deleteStudent = await con.deleteStudent(id);
-      res.redirect('/attendance');
+      // res.redirect('/attendance');
+      res.status(200).redirect('/attendance');
     });
 // */
 

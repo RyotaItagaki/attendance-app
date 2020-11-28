@@ -26,6 +26,8 @@ export class StudentServiceImpl implements IStudentService {
     const found = await studentRepository.findByPk(id).then((student) => {
       return JSON.parse(JSON.stringify(student));
       // return student;
+    }).catch((e) => {
+      throw new Error(e);
     });
     return found;
   }
@@ -61,13 +63,21 @@ export class StudentServiceImpl implements IStudentService {
     return update;
   }
 
-  async deleteStudent(id: number): Promise<string> {
+  async deleteStudent(id: number): Promise<string | false> {
     const studentRepository = seq.getRepository(StudentsMapper);
     const update = await studentRepository.destroy({
       where: {id: id},
     }).then(() => {
       return 'student削除';
     });
+    // */
+    /*
+    if (!win) {
+      return false;
+    } else {
+      return update;
+    }
+    */
     return update;
   }
 }
