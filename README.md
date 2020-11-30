@@ -39,4 +39,6 @@ $ insert into students (id, name, creationdate, updatedon) values (2, '工藤だ
 $ insert into students (id, name, creationdate, updatedon) values (3, '藤田優一', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 $ insert into students (name, creationdate, updatedon) values ('中村真太郎', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into "group" (id, "groupName", explain, creationdate, updatedon) values (1, 'グループ1', '試しに作ったグループです。',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 ```

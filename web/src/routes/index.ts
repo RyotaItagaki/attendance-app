@@ -3,69 +3,76 @@ const express = require('express');
 import {Request, Response, NextFunction} from 'express';
 import {container} from '../common/inversify.config';
 import {TYPES} from '../common/Types';
+import {IGroupService} from '../Service/IGroupService';
 import {IStudentService} from '../Service/IStudentService';
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-const con = container.get<IStudentService>(TYPES.IStudentService);
+// const con = container.get<IStudentService>(TYPES.IStudentService);
+const con = container.get<IGroupService>(TYPES.IGroupService);
 
-/* Get a home page */
+// テスト
+// 後々消す
 router.get(
-    '/attendance',
+    '/message',
     async (req: Request, res: Response, next: NextFunction) => {
-      const students = await con.findAllStudents();
-      res.status(200).render('index', {students: students});
+      const message = 'メッセージ';
+      res.status(200).render('message', {message: message});
     });
 
-// Get a student
-// ここでもviewはindex使えるのでは
+// Get all groups
 router.get(
-    '/attendance/:id',
+    '/home',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const groups = await con.findAllGroup();
+      res.status(200).render('index', {groups: groups});
+    });
+
+// Get a group
+router.get(
+    '/home/:id',
     async (req: Request, res: Response, next: NextFunction) => {
       const id = parseInt(req.params.id);
-      const student = await con.findOneStudent(id);
+      const group = await con.findGroup(id);
       // res.json(student);
-      res.render('student', {student: student});
+      res.render('group', {group: group});
     });
 
-// Create a student
+// Create a group
 router.post(
-    '/attendance',
+    '/home',
     async (req: Request, res: Response, next: NextFunction) => {
       const name = req.body.name;
-      const newStudent = await con.createStudent(name);
+      const explain = req.body.explain;
+      const newGroup = await con.createGroup(name, explain);
       // res.send({message: newStudent});
-      res.status(201).redirect('/attendance');
+      // res.status(201).redirect('/attendance');
+      res.status(201).render('message', {message: newGroup});
     });
 
-// update a student
+// update a group
 // router.putじゃねーの？？？？？？
 router.post(
-    '/attendance/:id/edit',
+    '/home/:id/edit',
     async (req: Request, res: Response, next: NextFunction) => {
       const id = parseInt(req.params.id);
       const name = req.body.name;
-      const updateStudent = await con.updateStudent(id, name);
-      res.status(201).redirect('/attendance');
+      const explain = req.body.explain;
+      const updateGroup = await con.updateGroup(id, name, explain);
+      // res.status(201).redirect('/attendance');
+      res.status(200).render('message', {message: updateGroup});
     });
 
 // delete a student
-// /*
 router.post(
-    '/attendance/:id/del',
+    '/home/:id/del',
     async (req: Request, res: Response, next: NextFunction) => {
       const id = parseInt(req.params.id);
-      /*
-      if (condition) {
-
-      } else {
-
-      }
-      */
-      const deleteStudent = await con.deleteStudent(id);
-      // res.redirect('/attendance');
-      res.status(200).redirect('/attendance');
+      const deleteGroup = await con.deleteGroup(id);
+      res.status(204).redirect('/home');
+      // res.status(204).json({message: deleteGroup});
     });
+
 // */
 
 module.exports = router;

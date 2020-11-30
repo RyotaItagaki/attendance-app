@@ -1,0 +1,27 @@
+<%- include('common/header') %>
+
+<h1>出席管理アプリ</h1>
+<!--
+<p>生徒作成</p>
+<form action="/attendance" method="post">
+  <label for="name">名前</label>
+  <input type="text" name="name">
+  <button type="submit">作成</button>
+</form>
+-->
+<h2>出席管理：<%= group.groupName %></h2>
+<p><%= group.explain %></p>
+
+<h3>編集</h3>
+<form action="/home/<%= group.id %>/edit" method="POST">
+  <label for="name">グループ名</label>
+  <input type="text" name="name">
+  <label for="explain">グループの説明</label>
+  <input type="text" name="explain">
+  <button type="submit">変更</button>
+</form>
+<form action="/home/<%= group.id %>/del" method="post">
+  <button type="submit">削除</button>
+</form>
+
+<%- include('common/footer') %>
