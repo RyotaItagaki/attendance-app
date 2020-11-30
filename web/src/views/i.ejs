@@ -1,0 +1,30 @@
+<%- include('common/header') %>
+
+<h1>生徒管理</h1>
+<p>生徒作成</p>
+<form action="/attendance" method="post">
+  <label for="name">名前</label>
+  <input type="text" name="name">
+  <button type="submit">作成</button>
+</form>
+<p>生徒一覧</p>
+<table>
+  <tr>
+    <th>番号</th>
+    <th>名前</th>
+  </tr>
+  <% students.forEach((student)=> { %>
+  <tr>
+    <td align="center"><%= student.id %></td>
+    <td align="center"><%= student.name %></td>
+    <td>
+      <form action="/attendance/<%= student.id %>" method="GET">
+        <button type="submit">詳細</button>
+      </form>
+    </td>
+  </tr>
+  <% }); %>
+</table>
+
+
+<%- include('common/footer') %>
