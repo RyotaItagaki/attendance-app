@@ -1,0 +1,17 @@
+<%- include('common/header') %>
+
+<h1>出席管理アプリ</h1>
+<h2>出席管理：<%= group.groupName %></h2>
+<h3>グループの説明</h3>
+<p><%= group.explain %></p>
+
+<h3>メンバー</h3>
+<ul>
+  <% members.forEach((member) => { %>
+    <li><a href="/group/<%= group.id %>/member/<%= member.id %> "><%= member.name %></a></li>
+  <% }); %>
+</ul>
+<!--buttonにするか??-->
+<a href="/group/<%= group.id %>/member">新規メンバー作成</a>
+
+<%- include('common/footer') %>

@@ -7,7 +7,8 @@ const app = express();
 
 const indexRouter = require('./routes');
 const aboutRouter = require('./routes/about');
-const hellojsonRouter = require('./routes/hellojson');
+const groupRouter = require('./routes/group');
+const memberRouter = require('./routes/member');
 
 // view engine set up
 app.set('views', path.join(__dirname, 'views'));
@@ -19,15 +20,13 @@ app.use(express.urlencoded({extended: false}));
 
 app.use('/', indexRouter);
 app.use('/about', aboutRouter);
-app.use('/hellojson', hellojsonRouter);
+app.use('/group', groupRouter);
+app.use('/group', memberRouter);
 
-app.get('/attendance/v1/hello', (req, res) => {
+app.get('/hello', (req, res) => {
   // res.json({message: 'hello, world'});
   res.send('hello, world');
 });
-
-// get all students
-// app.get('/attendance/v1/students', () => {});
 
 const port = process.env.PORT || 3000;
 // app.listen(port);
