@@ -12,12 +12,12 @@
 <h2>グループ一覧</h2>
 <ul>
   <% groups.forEach((group)=> { %>
-  <li><a href="/home/<%= group.id %>"><%= group.groupName %></a></li>
+  <li><a href="/group/<%= group.id %>"><%= group.groupName %></a></li>
   <% }); %>
 </ul>
 
 <p>グループ作成</p>
-<form action="/home" method="post">
+<form action="/group" method="post">
   <label for="name">グループ名</label>
   <input type="text" name="name">
   <label for="explain">グループの説明</label>

@@ -9,11 +9,27 @@
 
 |メソッド|URI|詳細|
 |-|-|-|
-|GET|`/attendance`|生徒リスト取得|
-|GET|`/attendance/123`|生徒情報の習得|
-|POST|`/attendance`|新規生徒作成|
-|PUT|`/attendance/123`|生徒情報の更新|
-|DELETE|`/attendance/123`|生徒の削除|
+|GET|`/top`|トップページ|
+|GET|`/group`|グループ一覧取得|
+|GET|`/group/123`|グループ取得（id指定）|
+|POST|`/group`|新規グループ作成|
+|PUT|`/group/123/edit`|グループの更新|
+|DELETE|`/group/123/del`|グループの削除|
+|GET|`/group/123/attendance`|メンバー一覧取得（グループ内）、イベント一覧取得、出席一覧取得|
+|GET|`/group/123/member/123`|メンバー取得（id指定）|
+|POST|`/group/123/member`|新規メンバー作成|
+|PUT|`/group/123/member/123/edit`|メンバー更新|
+|DELETE|`/group/123/member/123/del`|メンバー削除|
+|GET|`/group/123/date/:id`|イベント取得（id）|
+|POST|`/group/123/date/`|イベント作成|
+|PUT|`/group/123/date/:id`|イベント更新|
+|DELETE|`/group/123/date/:id`|イベント削除|
+|GET|`/group/123/attendance/:id`|出席取得(id)|
+|POST|`/group/123/attendance`|出席作成|
+|PUT|`/group/123/attendance/:id`|出席更新|
+|DELETE|`/group/123/attendance/:id`|出席削除（これはなし？）|
+
+
 
 ## ユースケース
 ### アクター：ユーザー（先生）
@@ -41,4 +57,14 @@ $ insert into students (id, name, creationdate, updatedon) values (3, '藤田優
 $ insert into students (name, creationdate, updatedon) values ('中村真太郎', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 $ insert into "group" (id, "groupName", explain, creationdate, updatedon) values (1, 'グループ1', '試しに作ったグループです。',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into member 
+(id, "groupId", number, name, sex, "otherInfo", creationdate, updatedon)
+values
+(1, 1, 1, '板垣亮太', 'man', 'よろしくお願いします。',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into member 
+(id, "groupId", number, name, sex, "otherInfo", creationdate, updatedon)
+values
+(2, 1, 1, '工藤だいし', 'man', 'よろしくお願いします。',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 ```
