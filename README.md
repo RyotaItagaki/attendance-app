@@ -67,4 +67,9 @@ $ insert into member
 (id, "groupId", number, name, sex, "otherInfo", creationdate, updatedon)
 values
 (2, 1, 1, '工藤だいし', 'man', 'よろしくお願いします。',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into date 
+(id, "groupId", "date", "otherInfo", creationdate, updatedon)
+values
+(1, 1, '2020/12/04', 'イベント1' ,CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 ```

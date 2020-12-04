@@ -1,0 +1,20 @@
+<%- include('common/header') %>
+
+<h1>出席管理アプリ</h1>
+<h2>イベント詳細</h2>
+<table>
+  <tr>
+    <th>日付</th>
+    <td><%= date.date %> </td>
+  </tr>
+  <tr>
+    <th>その他</th>
+    <td><%= date.otherInfo %> </td>
+  </tr>
+</table>
+<a href="/group/<%= groupId %>/date/<%= id %>/edit">編集</a>
+<form action="/group/<%= groupId %>/date/<%= id %>/del" method="post">
+  <button type="submit">削除</button>
+</form>
+
+<%- include('common/footer') %>
