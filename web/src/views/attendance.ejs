@@ -6,12 +6,30 @@
 <p><%= group.explain %></p>
 
 <h3>メンバー</h3>
-<ul>
+<table border="1" cellspacing="0" cellpadding="5" bordercolor="#000000">
+  <tr>
+    <th></th>
+    <% dates.forEach((date) => {
+      const theDate = new Date(date.date);
+      const theDateStr = `${theDate.getFullYear()}/${theDate.getMonth() + 1}/${theDate.getDate()}`;
+    %>
+    <th>
+      <a href="/group/<%= group.id %>/date/<%= date.id %>">
+        <%- theDateStr %>
+      </a>
+    </th>
+    <% }); %> 
+  </tr>
   <% members.forEach((member) => { %>
-    <li><a href="/group/<%= group.id %>/member/<%= member.id %> "><%= member.name %></a></li>
+  <tr>
+    <th>
+      <a href="/group/<%= group.id %>/member/<%= member.id %> "><%= member.name %></a>
+    </th>
+  </tr>
   <% }); %>
-</ul>
+</table>
 <!--buttonにするか??-->
 <a href="/group/<%= group.id %>/member">新規メンバー作成</a>
+<a href="/group/<%= group.id %>/date">新規イベント作成</a>
 
 <%- include('common/footer') %>

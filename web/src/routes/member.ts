@@ -15,6 +15,7 @@ const con = container.get<IMemberService>(TYPES.IMemberService);
 // get all members in group
 // 重要
 // 後に移植するかも
+/*
 router.get(
     '/:groupId/attendance',
     async (req: Request, res: Response, next: NextFunction) => {
@@ -23,6 +24,7 @@ router.get(
       const members = await con.findMemberInGroup(groupId);
       res.render('attendance', {group: group, members: members});
     });
+// */
 
 // get a member
 router.get(
@@ -40,7 +42,7 @@ router.get(
     (req: Request, res: Response, next: NextFunction) => {
       const groupId = parseInt(req.params.groupId);
       res.render('createMember', {groupId: groupId});
-    } );
+    });
 
 // get a update page
 router.get(
@@ -75,7 +77,12 @@ router.post(
           sex,
           otherInfo,
       );
-      res.status(201).render('message', {message: newMember});
+      res.status(201).render(
+          'messageMember',
+          {
+            groupId: groupId,
+            message: newMember,
+          });
     });
 
 // update a member
@@ -83,6 +90,7 @@ router.post(
 router.post(
     '/:groupId/member/:id/edit',
     async (req: Request, res: Response, next: NextFunction) => {
+      const groupId = parseInt(req.params.groupId);
       const id = parseInt(req.params.id);
       const number = req.body.number;
       const name = req.body.name;
@@ -95,16 +103,28 @@ router.post(
           sex,
           otherInfo,
       );
-      res.status(200).render('message', {message: updateMember});
+      res.status(200).render(
+          'messageMember',
+          {
+            groupId: groupId,
+            message: updateMember,
+          });
     });
 
 // delete a member
 router.post(
     '/:groupId/member/:id/del',
     async (req: Request, res: Response, next: NextFunction) => {
+      const groupId = parseInt(req.params.groupId);
       const id = parseInt(req.params.id);
       const deleteMember = await con.deleteMember(id);
-      res.redirect('/group');
+      // res.redirect(`/group/${groupId}/attendance`);
+      res.status(202).render(
+          'messageMember',
+          {
+            groupId: groupId,
+            message: deleteMember,
+          });
     });
 
 module.exports = router;

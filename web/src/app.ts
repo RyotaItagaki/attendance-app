@@ -9,6 +9,8 @@ const indexRouter = require('./routes');
 const aboutRouter = require('./routes/about');
 const groupRouter = require('./routes/group');
 const memberRouter = require('./routes/member');
+const dateRouter = require('./routes/date');
+const attendanceRouter = require('./routes/attendance');
 
 // view engine set up
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +24,8 @@ app.use('/', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/group', groupRouter);
 app.use('/group', memberRouter);
+app.use('/group', dateRouter);
+app.use('/group', attendanceRouter);
 
 app.get('/hello', (req, res) => {
   // res.json({message: 'hello, world'});
