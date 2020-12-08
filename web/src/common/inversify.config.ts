@@ -8,6 +8,8 @@ import {IMemberService} from '../Service/IMemberService';
 import {MemberServiceImpl} from '../Service/MemberServiceImpl';
 import {IDateService} from '../Service/IDateService';
 import {DateServiceImpl} from '../Service/DateServiceImpl';
+import {IAttendanceService} from '../Service/IAttendanceService';
+import {AttendanceServiceImpl} from '../Service/AttendanceServiceImpl';
 
 const container = new Container();
 container
@@ -25,6 +27,10 @@ container
 container
     .bind<IDateService>(TYPES.IDateService)
     .to(DateServiceImpl)
+    .inSingletonScope();
+container
+    .bind<IAttendanceService>(TYPES.IAttendanceService)
+    .to(AttendanceServiceImpl)
     .inSingletonScope();
 
 export {container};

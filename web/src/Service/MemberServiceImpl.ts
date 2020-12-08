@@ -2,8 +2,8 @@
 // 一時的な設定
 
 import {injectable} from 'inversify';
+import {AttendMapper} from '../mapping/attendance';
 import seq from '../mapping/connection';
-import {GroupMapper} from '../mapping/group';
 import {MemberMapper} from '../mapping/member';
 import {IMemberService} from './IMemberService';
 // import {IStudentService} from './IStudentService';
@@ -24,8 +24,10 @@ export class MemberServiceImpl implements IMemberService {
         ['number', 'ASC'],
       ],
     }).then((members) => {
-      // return JSON.stringify(students);
+      // return JSON.stringify(members);
       return JSON.parse(JSON.stringify(members));
+    }).catch((e) => {
+      throw new Error('エラー：' + e);
     });
     return found; // todo エラー
   }

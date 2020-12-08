@@ -18,13 +18,20 @@
         <%- theDateStr %>
       </a>
     </th>
-    <% }); %> 
+    <% }); %>
   </tr>
   <% members.forEach((member) => { %>
   <tr>
     <th>
-      <a href="/group/<%= group.id %>/member/<%= member.id %> "><%= member.name %></a>
+      <a href="/group/<%= group.id %>/member/<%= member.id %>"><%= member.name %></a>
     </th>
+    <% attendance.filter((attendance) => {
+      return attendance.memberId === member.id
+    }).forEach(element => { %>
+      <td>
+        <%- element.attendance === 'yes' ? '出席' : '欠席' %>
+      </td>
+    <% });%>
   </tr>
   <% }); %>
 </table>
