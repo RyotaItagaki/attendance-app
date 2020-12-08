@@ -41,6 +41,7 @@
 ```
 // GETメソッド
 $ curl -X GET http://localhost:3000
+$ curl -X GET http://localhost:3000/group/1/attendance
 ```
 
 
@@ -72,4 +73,25 @@ $ insert into date
 (id, "groupId", "date", "otherInfo", creationdate, updatedon)
 values
 (1, 1, '2020/12/04', 'イベント1' ,CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into attendance
+("memberId", "dateId", "attendance", creationdate, updatedon)
+values
+(1, 1, 'yes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into attendance
+("memberId", "dateId", "attendance", creationdate, updatedon)
+values
+(1, 2, 'yes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into attendance
+("memberId", "dateId", "attendance", creationdate, updatedon)
+values
+(2, 1, 'yes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+$ insert into attendance
+("memberId", "dateId", "attendance", creationdate, updatedon)
+values
+(2, 2, 'no', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
 ```

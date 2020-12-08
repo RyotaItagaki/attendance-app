@@ -32,8 +32,8 @@ export class DateServiceImpl implements IDateService {
   async findDate(id: number): Promise<string> {
     const dateRepository = seq.getRepository(DateMapper);
     const found = await dateRepository.findByPk(id).then((date) => {
-      return JSON.parse(JSON.stringify(date));
-      // return JSON.stringify(date);
+      // return JSON.parse(JSON.stringify(date));
+      return JSON.stringify(date);
     }).catch((e) => {
       throw new Error(e); // todo エラー
     });

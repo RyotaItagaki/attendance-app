@@ -15,7 +15,7 @@ router.get(
     async (req: Request, res: Response, next: NextFunction) => {
       const groupId = parseInt(req.params.groupId);
       const id = parseInt(req.params.id);
-      const date = await con.findDate(id);
+      const date = JSON.parse(await con.findDate(id));
       res.render('date', {groupId: groupId, id: id, date: date});
     });
 
@@ -33,7 +33,15 @@ router.get(
     async (req: Request, res: Response, next: NextFunction) => {
       const groupId = parseInt(req.params.groupId);
       const id = parseInt(req.params.id);
-      const preDate = await con.findDate(id);
+      const preDate = await con.findDate(id).then((date) => {
+        const dateObj = new Date(JSON.parse(date).date);
+        const yyyy = dateObj.getFullYear();
+        const mm = ('0' + (dateObj.getMonth()+1)).slice(-2);
+        const dd = ('0' + dateObj.getDate()).slice(-2);
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+        const otherInfo = JSON.parse(date).otherInfo;
+        return {date: dateStr, otherInfo: otherInfo};
+      });
       res.render(
           'updateDate', {
             groupId: groupId,
