@@ -2,12 +2,17 @@ const express = require('express');
 import {Request, Response, NextFunction} from 'express';
 import {container} from '../common/inversify.config';
 import {TYPES} from '../common/Types';
+import {IAttendanceService} from '../Service/IAttendanceService';
 import {IDateService} from '../Service/IDateService';
+import {IMemberService} from '../Service/IMemberService';
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
 const con = container.get<IDateService>(TYPES.IDateService);
+const conMember = container.get<IMemberService>(TYPES.IMemberService);
+// eslint-disable-next-line max-len
+const conAttendance = container.get<IAttendanceService>(TYPES.IAttendanceService);
 
 // get a date
 router.get(
@@ -57,16 +62,23 @@ router.post(
       const groupId = parseInt(req.params.groupId);
       const date = req.body.date;
       const otherInfo = req.body.otherInfo;
-      const newDate = await con.createDate(
+      const newDate = await con.createDate2(
           groupId,
           date,
           otherInfo,
       );
+      const member = await conMember.findMemberInGroup(groupId);
+      // eslint-disable-next-line max-len
+      const inputAttendance = JSON.parse(JSON.stringify(member)).map((member) => {
+        return {memberId: member.id, dateId: newDate.id, attendance: 'unknown'};
+      });
+      // eslint-disable-next-line max-len
+      const newAttendance = await conAttendance.createAttendanceMany(inputAttendance);
       res.status(201).render(
           'messageMember',
           {
             groupId: groupId,
-            message: newDate,
+            message: newDate.message + newAttendance,
           });
     });
 

@@ -33,20 +33,26 @@ const TABLE_NAME = 'attendance';
  * @implements {IStudents}
  */
 export class AttendMapper extends Model<AttendMapper> implements IAttend {
+  @Unique
   @PrimaryKey
+  @AutoIncrement
+  @Column(DataType.INTEGER)
+  public id: number;
+
+  // @PrimaryKey
   @ForeignKey(() => MemberMapper)
   @Column(DataType.INTEGER)
   public memberId: number;
 
-  @PrimaryKey
+  // @PrimaryKey
   @ForeignKey(() => DateMapper)
   @Column(DataType.INTEGER)
   public dateId: number;
 
   @Column(
       DataType.ENUM({
-        // 遅刻と早退
-        values: ['yes', 'no'],
+        // 出席、欠席、未定
+        values: ['yes', 'no', 'unknown'],
       }),
   )
   public attendance: string;

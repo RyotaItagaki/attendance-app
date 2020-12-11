@@ -36,5 +36,6 @@ const port = process.env.PORT || 3000;
 // app.listen(port);
 // console.log('ポート接続：' + port);
 app.listen(port, () => {
-  console.log(`listening on port: ${port}`);
+  // console.log(`listening on port: ${port}`);
+  console.log(`================== Welcome to Attendance App! Please connect to http://localhost:${port}/top ==================`);
 });

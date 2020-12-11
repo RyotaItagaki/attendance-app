@@ -65,6 +65,31 @@ export class MemberServiceImpl implements IMemberService {
     return create;
   }
 
+  async createMember2(
+      groupId: number,
+      number: number,
+      name: string,
+      sex: string,
+      otherInfo: string,
+  ): Promise<{ id: number; message: string; }> {
+    const memberRepository = seq.getRepository(MemberMapper);
+    const create = await memberRepository.create({
+      // idは自動採番
+      groupId: groupId,
+      number: number,
+      name: name,
+      sex: sex,
+      otherInfo: otherInfo,
+    }).then((member) => {
+      const id = member.id;
+      const message = '新規member作成';
+      return {id: id, message: message};
+    }).catch((e) => {
+      throw new Error('えらー' + e);
+    });
+    return create;
+  }
+
   async updateMember(
       id: number,
       number: number,

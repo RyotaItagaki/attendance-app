@@ -27,9 +27,26 @@
     </th>
     <% attendance.filter((attendance) => {
       return attendance.memberId === member.id
-    }).forEach(element => { %>
+    }).forEach(attendance => { %>
       <td>
-        <%- element.attendance === 'yes' ? '出席' : '欠席' %>
+        <a href="/group/<%= group.id %>/attendance/<%- attendance.id %>">
+          <%# attendance.attendance %>
+          <%
+            const attendanceStr = (state) => {
+              switch (state) {
+                case 'yes':
+                  return '出席'
+                case 'no':
+                  return '欠席'
+                case 'unknown':
+                  return '未定'
+                default:
+                  break;
+              }
+            }
+          %>
+          <%- attendanceStr(attendance.attendance) %>
+        </a>
       </td>
     <% });%>
   </tr>

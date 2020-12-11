@@ -11,6 +11,13 @@ export interface IMemberService {
     sex: string,
     otherInfo: string,
     ): Promise<string>;
+    createMember2(
+      groupId: number,
+      number: number,
+      name: string,
+      sex: string,
+      otherInfo: string,
+      ): Promise<{ id: number; message: string; }>;
   // member更新
   updateMember(
     id: number,

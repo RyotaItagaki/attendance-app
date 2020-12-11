@@ -60,6 +60,27 @@ export class DateServiceImpl implements IDateService {
     return create;
   }
 
+  async createDate2(
+      groupId: number,
+      date: Date,
+      otherInfo: string,
+  ): Promise<{ id: number; message: string; }> {
+    const dateRepository = seq.getRepository(DateMapper);
+    const create = await dateRepository.create({
+      // idは自動採番
+      groupId: groupId,
+      date: date,
+      otherInfo: otherInfo,
+    }).then((date) => {
+      const id = date.id;
+      const message = '新規date作成';
+      return {id: id, message: message};
+    }).catch((e) => {
+      throw new Error('えらー' + e);
+    });
+    return create;
+  }
+
   async updateDate(
       id: number,
       date: Date,
