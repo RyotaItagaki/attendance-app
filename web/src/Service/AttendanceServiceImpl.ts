@@ -4,7 +4,9 @@
 import {injectable} from 'inversify';
 import {AttendMapper} from '../mapping/attendance';
 import seq from '../mapping/connection';
-import {IAttendanceService} from './IAttendanceService';
+import {DateMapper} from '../mapping/date';
+import {MemberMapper} from '../mapping/member';
+import {IAttendanceService, inputAttendance} from './IAttendanceService';
 // import {IStudentService} from './IStudentService';
 
 @injectable()
@@ -31,17 +33,18 @@ export class AttendanceServiceImpl implements IAttendanceService {
     return found;
   }
 
+  // これはid特定で良い
   async findAttendance(
-      memberId: number,
-      dateId: number,
+      id: number,
+      // memberId: number,
+      // dateId: number,
   ): Promise<string> {
     const attendanceRepository = seq.getRepository(AttendMapper);
-    const found = await attendanceRepository.findOne({
-      where: {
-        memberId: memberId,
-        dateId: dateId,
-      },
-    }).then((attendance) => {
+    const memberRepository = seq.getRepository(MemberMapper);
+    const dateRepository = seq.getRepository(DateMapper);
+    const found = await attendanceRepository.findByPk(
+        id,
+    ).then((attendance) => {
       // return attendance;
       // return JSON.stringify(attendance);
       return JSON.parse(JSON.stringify(attendance));
@@ -70,7 +73,40 @@ export class AttendanceServiceImpl implements IAttendanceService {
     return create;
   }
 
+  async createAttendanceMany(
+      input: inputAttendance[],
+  ): Promise<string> {
+    const attendanceRepository = seq.getRepository(AttendMapper);
+    const create = await attendanceRepository.bulkCreate(input).then(() => {
+      return 'aaaaaaaaaaa';
+    }).catch((e) => {
+      throw new Error('エラー：' + e);
+    });
+    return create;
+  }
+
+  // id特定
   async updateAttendance(
+      id: number,
+      attendance: string,
+  ): Promise<string> {
+    const attendanceRepository = seq.getRepository(AttendMapper);
+    const update = await attendanceRepository.update(
+        {
+          attendance: attendance,
+        },
+        {
+          where: {
+            id: id,
+          },
+        },
+    ).then(() => {
+      return 'attendance修正';
+    });
+    return update;
+  }
+
+  async updateAttendanceMany(
       memberId: number,
       dateId: number,
       attendance: string,

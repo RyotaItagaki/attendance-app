@@ -10,7 +10,7 @@
 |メソッド|URI|詳細|
 |-|-|-|
 |GET|`/top`|トップページ|
-|GET|`/group`|グループ一覧取得|
+|GET|`/group`|グループ全取得|
 |GET|`/group/123`|グループ取得（id指定）|
 |POST|`/group`|新規グループ作成|
 |PUT|`/group/123/edit`|グループの更新|
@@ -20,15 +20,11 @@
 |POST|`/group/123/member`|新規メンバー作成|
 |PUT|`/group/123/member/123/edit`|メンバー更新|
 |DELETE|`/group/123/member/123/del`|メンバー削除|
-|GET|`/group/123/date/:id`|イベント取得（id）|
+|GET|`/group/123/date/123`|イベント取得（id）|
 |POST|`/group/123/date/`|イベント作成|
-|PUT|`/group/123/date/:id`|イベント更新|
-|DELETE|`/group/123/date/:id`|イベント削除|
-|GET|`/group/123/attendance/:id`|出席取得(id)|
-|POST|`/group/123/attendance`|出席作成|
-|PUT|`/group/123/attendance/:id`|出席更新|
-|DELETE|`/group/123/attendance/:id`|出席削除（これはなし？）|
-
+|PUT|`/group/123/date/123`|イベント更新|
+|DELETE|`/group/123/date/123`|イベント削除|
+|PUT|`/group/123/date/123/attendance`|出席更新|
 
 
 ## ユースケース
@@ -77,21 +73,21 @@ values
 $ insert into attendance
 ("memberId", "dateId", "attendance", creationdate, updatedon)
 values
-(1, 1, 'yes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(1, 1, '出席', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 $ insert into attendance
 ("memberId", "dateId", "attendance", creationdate, updatedon)
 values
-(1, 2, 'yes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(1, 2, '出席', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 $ insert into attendance
 ("memberId", "dateId", "attendance", creationdate, updatedon)
 values
-(2, 1, 'yes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(2, 1, '欠席', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 $ insert into attendance
 ("memberId", "dateId", "attendance", creationdate, updatedon)
 values
-(2, 2, 'no', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(2, 2, '出席', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 ```

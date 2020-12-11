@@ -9,6 +9,11 @@ export interface IDateService {
     date: Date,
     otherInfo: string,
     ): Promise<string>;
+    createDate2(
+      groupId: number,
+      date: Date,
+      otherInfo: string,
+      ): Promise<{ id: number; message: string; }>;
   // member更新
   updateDate(
     id: number,
