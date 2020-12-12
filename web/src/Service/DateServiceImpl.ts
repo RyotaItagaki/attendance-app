@@ -5,12 +5,11 @@ import {injectable} from 'inversify';
 import seq from '../mapping/connection';
 import {DateMapper} from '../mapping/date';
 import {IDateService} from './IDateService';
-// import {IStudentService} from './IStudentService';
 
 @injectable()
 /**
- * StudentServiceImpl
- * @implements {IStudentService}
+ * DateServiceImpl
+ * @implements {IDateService}
  */
 export class DateServiceImpl implements IDateService {
   async findDateInGroup(groupId: number): Promise<string> {
@@ -23,7 +22,6 @@ export class DateServiceImpl implements IDateService {
         ['date', 'ASC'],
       ],
     }).then((members) => {
-      // return JSON.stringify(students);
       return JSON.parse(JSON.stringify(members));
     });
     return found; // todo エラー
@@ -40,27 +38,7 @@ export class DateServiceImpl implements IDateService {
     return found;
   }
 
-  // 日付被りしない仕様
   async createDate(
-      groupId: number,
-      date: Date,
-      otherInfo: string,
-  ): Promise<string> {
-    const dateRepository = seq.getRepository(DateMapper);
-    const create = await dateRepository.create({
-      // idは自動採番
-      groupId: groupId,
-      date: date,
-      otherInfo: otherInfo,
-    }).then(() => {
-      return '新規date作成';
-    }).catch((e) => {
-      throw new Error('えらー' + e);
-    });
-    return create;
-  }
-
-  async createDate2(
       groupId: number,
       date: Date,
       otherInfo: string,

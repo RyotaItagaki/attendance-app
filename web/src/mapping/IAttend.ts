@@ -4,7 +4,7 @@ export interface IAttend {
   id: number;
   memberId: number;
   dateId: number;
-  attendance: string; // enum
+  attendance: string;
   createdAt: Date;
   updatedAt: Date;
 };
