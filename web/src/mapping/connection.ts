@@ -3,8 +3,6 @@ import {AttendMapper} from './attendance';
 import {DateMapper} from './date';
 import {GroupMapper} from './group';
 import {MemberMapper} from './member';
-import {StudentsMapper} from './students';
-// import {UserMapper} from './user';
 
 const env = process.env.NODE_ENV || 'development';
 // const env = 'development';
@@ -21,8 +19,6 @@ const seq = new Sequelize({
   // models: [__dirname + './'],
 });
 
-// seq.addModels([UserMapper]);
-// seq.addModels([StudentsMapper]);
 seq.addModels([GroupMapper, MemberMapper, DateMapper, AttendMapper]);
 
 export default seq;

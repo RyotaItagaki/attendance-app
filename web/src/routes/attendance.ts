@@ -1,6 +1,5 @@
 const express = require('express');
 import {Request, Response, NextFunction} from 'express';
-import {json} from 'sequelize/types';
 import {container} from '../common/inversify.config';
 import {TYPES} from '../common/Types';
 import {IAttendanceService} from '../Service/IAttendanceService';
@@ -47,8 +46,6 @@ router.get(
     });
 
 // get a update page
-// いらんかも
-// てか違うかも
 router.get(
     '/:groupId/attendance/:id',
     async (req: Request, res: Response, next: NextFunction) => {
@@ -60,28 +57,6 @@ router.get(
       const memberArr = JSON.parse(JSON.stringify(member));
       const date = await conDate.findDate(attendanceArr.dateId);
       const dateArr = JSON.parse(date);
-      // const member = await conMember.findMember
-      /*
-      const dateId = parseInt(req.params.dateId);
-      const date = await conDate.findDate(dateId);
-      const DATE = JSON.parse(JSON.stringify(date));
-      const members = await conMember.findMemberInGroup(groupId);
-      const memberIds = JSON.parse(JSON.stringify(members)).map((member) => {
-        return member.id;
-      });
-      const attendance = await conAttendance.findAllAttendance(
-          memberIds,
-          [dateId],
-      );
-      // */
-      /*
-      res.json({
-        membernName: memberArr.name,
-        date: dateArr,
-        attendance: attendanceArr,
-      });
-      */
-      // /*
       res.status(200).render(
           'editAttendance',
           {
@@ -91,7 +66,6 @@ router.get(
             attendance: attendanceArr,
           },
       );
-      // */
     });
 
 // update an attendance
@@ -106,7 +80,7 @@ router.post(
           attendance,
       );
       res.status(200).render(
-          'messageMember',
+          'message',
           {
             groupId: groupId,
             message: newAttendance,

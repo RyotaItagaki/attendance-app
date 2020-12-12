@@ -29,7 +29,7 @@ const TABLE_NAME = 'attendance';
   updatedAt: 'updatedon',
 })
 /**
- * ユーザー用Mapper
+ * 出席Mapper
  * @implements {IStudents}
  */
 export class AttendMapper extends Model<AttendMapper> implements IAttend {

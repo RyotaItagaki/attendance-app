@@ -1,4 +1,18 @@
 <%- include('common/header') %>
+<%
+  const sexJap = (sex) => {
+    switch (sex) {
+      case 'man':
+        return '男'
+      case 'woman':
+        return '女'
+      case 'other':
+        return 'その他'
+      default:
+        break;
+    }
+  }
+%> 
 
 <h1>出席管理アプリ</h1>
 <h2>メンバー詳細</h2>
@@ -13,7 +27,7 @@
   </tr>
   <tr>
     <th>性別</th>
-    <td><%= member.sex %> </td>
+    <td><%- sexJap(member.sex) %> </td>
   </tr>
   <tr>
     <th>その他</th>

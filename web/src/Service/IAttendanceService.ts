@@ -6,43 +6,23 @@ export interface inputAttendance {
 
 export interface IAttendanceService {
   // Attendance全取得
-  findAllAttendance(
+  findAllAttendance( // 1
     memberIds: number[],
     dateIds: number[],
   ): Promise<string>
   // Attendance取得
-  // idで良い
-  findAttendance(
+  findAttendance( // 2
     id: number,
-    // memberId: number,
-    // dateId: number,
-  ): Promise<string>;
-  // Attendance作成
-  createAttendance(
-    memberId: number,
-    dateId: number,
-    attendance: string,
   ): Promise<string>;
   // Attendance複数作成
-  createAttendanceMany(
+  createAttendanceMany( // 4,5
     input: inputAttendance[]
   ): Promise<string>;
   // Attendance更新
-  // id特定
-  updateAttendance(
+  updateAttendance( // 3
     id: number,
     attendance: string,
   ): Promise<string>;
-  updateAttendanceMany(
-    memberId: number,
-    dateId: number,
-    attendance: string,
-  ): Promise<string>;
-  // Attendance削除（必要？）
-  /*
-  deleteAttendance(
-    memberId: number,
-    dateId: number,
-    ): Promise<string>;
-  // */
+
+  // Attendance削除はなし
 }

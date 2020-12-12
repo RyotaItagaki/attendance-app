@@ -4,14 +4,12 @@
 import {injectable} from 'inversify';
 import seq from '../mapping/connection';
 import {GroupMapper} from '../mapping/group';
-import {StudentsMapper} from '../mapping/students';
 import {IGroupService} from './IGroupService';
-// import {IStudentService} from './IStudentService';
 
 @injectable()
 /**
- * StudentServiceImpl
- * @implements {IStudentService}
+ * GroupServiceImpl
+ * @implements {IGroupService}
  */
 export class GroupServiceImpl implements IGroupService {
   async findAllGroup(): Promise<string> {
@@ -21,7 +19,6 @@ export class GroupServiceImpl implements IGroupService {
         ['id', 'ASC'],
       ],
     }).then((groups) => {
-      // return JSON.stringify(students);
       return JSON.parse(JSON.stringify(groups));
     });
     return found; // todo エラー
@@ -31,16 +28,12 @@ export class GroupServiceImpl implements IGroupService {
     const groupRepository = seq.getRepository(GroupMapper);
     const found = await groupRepository.findByPk(id).then((group) => {
       return JSON.parse(JSON.stringify(group));
-      // return student;
     }).catch((e) => {
       throw new Error(e); // todo エラー
     });
     return found;
   }
 
-  // ゆくゆくはjson入力？？？
-  // routesでreq.body.nameでいけるはず
-  // /*
   async createGroup(name: string, explain: string): Promise<string> {
     const groupRepository = seq.getRepository(GroupMapper);
     const create = await groupRepository.create({
@@ -52,7 +45,6 @@ export class GroupServiceImpl implements IGroupService {
     });
     return create;
   }
-  // */
 
   async updateGroup(
       id: number, name: string, explain: string,

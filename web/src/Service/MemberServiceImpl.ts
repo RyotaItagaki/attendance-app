@@ -1,12 +1,10 @@
 /* eslint-disable require-jsdoc */
-// 一時的な設定
 
 import {injectable} from 'inversify';
 import {AttendMapper} from '../mapping/attendance';
 import seq from '../mapping/connection';
 import {MemberMapper} from '../mapping/member';
 import {IMemberService} from './IMemberService';
-// import {IStudentService} from './IStudentService';
 
 @injectable()
 /**
@@ -24,7 +22,6 @@ export class MemberServiceImpl implements IMemberService {
         ['number', 'ASC'],
       ],
     }).then((members) => {
-      // return JSON.stringify(members);
       return JSON.parse(JSON.stringify(members));
     }).catch((e) => {
       throw new Error('エラー：' + e);
@@ -43,29 +40,6 @@ export class MemberServiceImpl implements IMemberService {
   }
 
   async createMember(
-      groupId: number,
-      number: number,
-      name: string,
-      sex: string,
-      otherInfo: string,
-  ): Promise<string> {
-    const memberRepository = seq.getRepository(MemberMapper);
-    const create = await memberRepository.create({
-      // idは自動採番
-      groupId: groupId,
-      number: number,
-      name: name,
-      sex: sex,
-      otherInfo: otherInfo,
-    }).then(() => {
-      return '新規member作成';
-    }).catch((e) => {
-      throw new Error('えらー' + e);
-    });
-    return create;
-  }
-
-  async createMember2(
       groupId: number,
       number: number,
       name: string,

@@ -62,7 +62,7 @@ router.post(
       const groupId = parseInt(req.params.groupId);
       const date = req.body.date;
       const otherInfo = req.body.otherInfo;
-      const newDate = await con.createDate2(
+      const newDate = await con.createDate(
           groupId,
           date,
           otherInfo,
@@ -75,7 +75,7 @@ router.post(
       // eslint-disable-next-line max-len
       const newAttendance = await conAttendance.createAttendanceMany(inputAttendance);
       res.status(201).render(
-          'messageMember',
+          'message',
           {
             groupId: groupId,
             message: newDate.message + newAttendance,
@@ -96,7 +96,7 @@ router.post(
           otherInfo,
       );
       res.status(200).render(
-          'messageMember',
+          'message',
           {
             groupId: groupId,
             message: updateDate,
@@ -112,7 +112,7 @@ router.post(
       const delDate = await con.deleteDate(id);
       console.log(delDate);
       res.status(202).render(
-          'messageMember',
+          'message',
           {
             groupId: groupId,
             message: delDate,

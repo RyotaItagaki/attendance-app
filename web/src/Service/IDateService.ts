@@ -8,18 +8,13 @@ export interface IDateService {
     groupId: number,
     date: Date,
     otherInfo: string,
-    ): Promise<string>;
-    createDate2(
-      groupId: number,
-      date: Date,
-      otherInfo: string,
-      ): Promise<{ id: number; message: string; }>;
+  ): Promise<{ id: number; message: string; }>;
   // member更新
   updateDate(
     id: number,
     date: Date,
     otherInfo: string,
-    ): Promise<string>;
+  ): Promise<string>;
   // member削除
   deleteDate(id: number): Promise<string>;
 }
