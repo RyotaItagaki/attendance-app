@@ -76,7 +76,7 @@ export class AttendanceServiceImpl implements IAttendanceService {
           },
         },
     ).then(() => {
-      return 'attendance修正';
+      return '出席情報を更新しました';
     });
     return update;
   }

@@ -51,7 +51,7 @@ export class DateServiceImpl implements IDateService {
       otherInfo: otherInfo,
     }).then((date) => {
       const id = date.id;
-      const message = '新規date作成';
+      const message = '新規にイベントを作成しました';
       return {id: id, message: message};
     }).catch((e) => {
       throw new Error('えらー' + e);
@@ -74,7 +74,7 @@ export class DateServiceImpl implements IDateService {
           where: {id: id},
         },
     ).then(() => {
-      return 'date修正';
+      return 'イベントを修正しました';
     });
     return update;
   }
@@ -84,7 +84,7 @@ export class DateServiceImpl implements IDateService {
     const del = await dateRepository.destroy({
       where: {id: id},
     }).then(() => {
-      return 'date削除';
+      return 'イベントを削除しました';
     });
     return del;
   }

@@ -25,7 +25,7 @@ router.get(
     async (req: Request, res: Response, next: NextFunction) => {
       const id = parseInt(req.params.id);
       const group = await con.findGroup(id);
-      res.render('group', {group: group});
+      res.status(200).render('group', {group: group});
     });
 
 // Create a group

@@ -34,7 +34,7 @@
     <td><%= member.otherInfo %> </td>
   </tr>
 </table>
-
+<a href="/group/<%= groupId %>/attendance">出席管理に戻る</a>
 <a href="/group/<%= groupId %>/member/<%= id %>/edit">編集</a>
 <form action="/group/<%= groupId %>/member/<%= id %>/del" method="post">
   <button type="submit">削除</button>
