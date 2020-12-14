@@ -1,0 +1,62 @@
+<%- include('common/header') %>
+
+<h1>出席管理アプリ</h1>
+<h2>出席管理：<%= group.groupName %></h2>
+<a href="/group/<%= group.id %>">グループ情報へ</a>
+<a href="/group">グループ一覧へ</a>
+<h3>グループの説明</h3>
+<p><%= group.explain %></p>
+
+<h3>メンバー</h3>
+<table border="1" cellspacing="0" cellpadding="5" bordercolor="#000000">
+  <tr>
+    <th></th>
+    <% dates.forEach((date) => {
+      const theDate = new Date(date.date);
+      const theDateStr = `${theDate.getFullYear()}/${theDate.getMonth() + 1}/${theDate.getDate()}`;
+    %>
+    <th>
+      <a href="/group/<%= group.id %>/date/<%= date.id %>">
+        <%- theDateStr %>
+      </a>
+    </th>
+    <% }); %>
+  </tr>
+  <% members.forEach((member) => { %>
+  <tr>
+    <th>
+      <a href="/group/<%= group.id %>/member/<%= member.id %>"><%= member.name %></a>
+    </th>
+    <% attendance.filter((attendance) => {
+      return attendance.memberId === member.id
+    }).forEach(attendance => { %>
+      <td>
+        <a href="/group/<%= group.id %>/attendance/<%- attendance.id %>">
+          <%# attendance.attendance %>
+          <%
+            const attendanceStr = (state) => {
+              switch (state) {
+                case 'yes':
+                  return '出席'
+                case 'no':
+                  return '欠席'
+                case 'unknown':
+                  return '未定'
+                default:
+                  break;
+              }
+            }
+          %>
+          <%- attendanceStr(attendance.attendance) %>
+        </a>
+      </td>
+    <% });%>
+  </tr>
+  <% }); %>
+</table>
+<div>
+  <a href="/group/<%= group.id %>/member">新規メンバー作成</a>
+  <a href="/group/<%= group.id %>/date">新規イベント作成</a>
+</div>
+
+<%- include('common/footer') %>

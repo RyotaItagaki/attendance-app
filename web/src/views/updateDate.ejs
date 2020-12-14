@@ -1,0 +1,21 @@
+<%- include('common/header') %>
+
+<h1>出席管理アプリ</h1>
+<h2>イベント編集</h2>
+<form action="/group/<%= groupId %>/date/<%= id %>/edit" method="post">
+  <table>
+    <tr>
+      <th><label for="date">日付</label></th>
+      <td>
+        <input type="date" name="date" value="<%= preDate.date %>">
+      </td>
+    </tr>
+    <tr>
+      <th><label for="otherInfo">その他情報</label></th>
+      <td><textarea name="otherInfo" cols="30" rows="10"><%= preDate.otherInfo %></textarea></td>
+    </tr>
+  </table>
+  <button type="submit">保存</button>
+</form>
+
+<%- include('common/footer') %>

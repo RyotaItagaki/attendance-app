@@ -1,0 +1,43 @@
+<%- include('common/header') %>
+<%
+  const sexJap = (sex) => {
+    switch (sex) {
+      case 'man':
+        return '男'
+      case 'woman':
+        return '女'
+      case 'other':
+        return 'その他'
+      default:
+        break;
+    }
+  }
+%> 
+
+<h1>出席管理アプリ</h1>
+<h2>メンバー詳細</h2>
+<table>
+  <tr>
+    <th>番号</th>
+    <td><%= member.number %> </td>
+  </tr>
+  <tr>
+    <th>名前</th>
+    <td><%= member.name %> </td>
+  </tr>
+  <tr>
+    <th>性別</th>
+    <td><%- sexJap(member.sex) %> </td>
+  </tr>
+  <tr>
+    <th>その他</th>
+    <td><%= member.otherInfo %> </td>
+  </tr>
+</table>
+<a href="/group/<%= groupId %>/attendance">出席管理に戻る</a>
+<a href="/group/<%= groupId %>/member/<%= id %>/edit">編集</a>
+<form action="/group/<%= groupId %>/member/<%= id %>/del" method="post">
+  <button type="submit">削除</button>
+</form>
+
+<%- include('common/footer') %>

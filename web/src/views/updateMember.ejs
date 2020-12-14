@@ -1,0 +1,33 @@
+<%- include('common/header') %>
+
+<h1>出席管理アプリ</h1>
+<h2>メンバー編集</h2>
+<form action="/group/<%= groupId %>/member/<%= id %>/edit" method="post">
+  <table>
+    <tr>
+      <th><label for="number">番号</label></th>
+      <td><input type="number" name="number" value="<%= preMember.number %> "></td>
+    </tr>
+    <tr>
+      <th><label for="name">名前</label></th>
+      <td><input type="text" name="name" value="<%= preMember.name %> "></td>
+    </tr>
+    <tr>
+      <th><label for="sex">性別</label></th>
+      <td>
+        <select name="sex">
+          <option value="man">男</option>
+          <option value="woman">女</option>
+          <option value="other">その他</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="otherInfo">その他情報</label></th>
+      <td><textarea name="otherInfo" cols="30" rows="10"><%= preMember.otherInfo %> </textarea></td>
+    </tr>
+  </table>
+  <button type="submit">保存</button>
+</form>
+
+<%- include('common/footer') %>

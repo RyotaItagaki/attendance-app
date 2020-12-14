@@ -8,7 +8,11 @@ services:
     volumes:
       - ./web:/web:cached
     working_dir: /web
-    command: node
+    # command: node
+    command: npm start
+    # command: npm run start-all
+    networks: 
+      - ita-net
   db:
     image: postgres
     restart: unless-stopped
@@ -20,3 +24,8 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: teacher
       POSTGRES_DB: attendance
+    networks: 
+      - ita-net
+networks: 
+  ita-net:
+    driver: bridge
