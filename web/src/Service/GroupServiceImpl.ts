@@ -41,7 +41,7 @@ export class GroupServiceImpl implements IGroupService {
       groupName: name, // 注意
       explain: explain,
     }).then(() => {
-      return '新規group作成';
+      return '新規グループを作成しました';
     });
     return create;
   }
@@ -59,7 +59,7 @@ export class GroupServiceImpl implements IGroupService {
           where: {id: id},
         },
     ).then(() => {
-      return 'group修正';
+      return 'グループを修正しました';
     });
     return update;
   }
@@ -69,7 +69,7 @@ export class GroupServiceImpl implements IGroupService {
     const del = await groupRepository.destroy({
       where: {id: id},
     }).then(() => {
-      return 'group削除';
+      return 'グループを削除しました';
     });
     return del;
   }

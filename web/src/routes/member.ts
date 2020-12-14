@@ -22,7 +22,13 @@ router.get(
       const id = parseInt(req.params.id);
       const member = await con.findMember(id);
       const groupId = parseInt(req.params.groupId);
-      res.render('member', {groupId: groupId, id: id, member: member});
+      res.status(200).render(
+          'member',
+          {
+            groupId: groupId,
+            id: id,
+            member: member,
+          });
     });
 
 // get a create page
@@ -30,7 +36,7 @@ router.get(
     '/:groupId/member',
     (req: Request, res: Response, next: NextFunction) => {
       const groupId = parseInt(req.params.groupId);
-      res.render('createMember', {groupId: groupId});
+      res.status(200).render('createMember', {groupId: groupId});
     });
 
 // get a update page
@@ -41,7 +47,7 @@ router.get(
       const id = parseInt(req.params.id);
       const preMember = await con.findMember(id);
       // formのinputに初期値入れる
-      res.render(
+      res.status(200).render(
           'updateMember',
           {
             groupId: groupId,

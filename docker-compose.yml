@@ -10,6 +10,7 @@ services:
     working_dir: /web
     # command: node
     command: npm start
+    # command: npm run start-all
     networks: 
       - ita-net
   db:

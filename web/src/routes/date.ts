@@ -21,7 +21,7 @@ router.get(
       const groupId = parseInt(req.params.groupId);
       const id = parseInt(req.params.id);
       const date = JSON.parse(await con.findDate(id));
-      res.render('date', {groupId: groupId, id: id, date: date});
+      res.status(200).render('date', {groupId: groupId, id: id, date: date});
     });
 
 // get a create page
@@ -29,7 +29,7 @@ router.get(
     '/:groupId/date',
     (req: Request, res: Response, next: NextFunction) => {
       const groupId = parseInt(req.params.groupId);
-      res.render('createDate', {groupId: groupId});
+      res.status(200).render('createDate', {groupId: groupId});
     });
 
 // get a update page
@@ -47,7 +47,7 @@ router.get(
         const otherInfo = JSON.parse(date).otherInfo;
         return {date: dateStr, otherInfo: otherInfo};
       });
-      res.render(
+      res.status(200).render(
           'updateDate', {
             groupId: groupId,
             id: id,

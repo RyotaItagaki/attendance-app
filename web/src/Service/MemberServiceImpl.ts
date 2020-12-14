@@ -56,7 +56,7 @@ export class MemberServiceImpl implements IMemberService {
       otherInfo: otherInfo,
     }).then((member) => {
       const id = member.id;
-      const message = '新規member作成';
+      const message = '新規メンバーを作成しました';
       return {id: id, message: message};
     }).catch((e) => {
       throw new Error('えらー' + e);
@@ -83,7 +83,7 @@ export class MemberServiceImpl implements IMemberService {
           where: {id: id},
         },
     ).then(() => {
-      return 'member修正';
+      return 'メンバーを修正しました';
     });
     return update;
   }
@@ -93,7 +93,7 @@ export class MemberServiceImpl implements IMemberService {
     const del = await memberRepository.destroy({
       where: {id: id},
     }).then(() => {
-      return 'member削除';
+      return 'メンバーを削除しました';
     });
     return del;
   }

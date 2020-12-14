@@ -9,7 +9,8 @@
     "db-sync": "ts-node src/initial.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-unit": "mocha --require ts-node/register test/unit.ts",
-    "start": "ts-node-dev src/app.ts"
+    "start": "ts-node-dev src/app.ts",
+    "start-all": "sequelize db:drop sequelize db:create ts-node src/initial.ts ts-node-dev src/app.ts"
   },
   "author": "",
   "license": "ISC",
