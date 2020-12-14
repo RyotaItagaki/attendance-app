@@ -9,10 +9,10 @@ $ docker -v
 ```
 ### Step 1
 ```
-$ docker-compose up
+$ docker-compose up -d
 $ docker-compose exec web sh
 $ npm install
-$ npm db-sync
+$ npm run db-sync
 $ npm start
 ```
 

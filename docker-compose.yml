@@ -8,9 +8,8 @@ services:
     volumes:
       - ./web:/web:cached
     working_dir: /web
-    # command: node
-    command: npm start
-    # command: npm run start-all
+    command: node
+    # command: npm start
     networks: 
       - ita-net
   db:
@@ -19,13 +18,15 @@ services:
     ports: 
       - 5432:5432
     volumes: 
-      - ./db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: teacher
       POSTGRES_DB: attendance
     networks: 
       - ita-net
+volumes: 
+  db:
 networks: 
   ita-net:
     driver: bridge
